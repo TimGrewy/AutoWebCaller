@@ -36,10 +36,11 @@ public class LoginViaSubmitForm {
 
 			// Now submit the form by clicking the button and get back the second page.
 			Page page2 = loginElement.click();
-			Logger.logToSystemLog("Success: Loaded " + page2.getUrl() + " with status: " + page2.getWebResponse().getStatusCode() + " " + page2.getWebResponse().getStatusMessage());
-			boolean success = expetedUrlAfterLogin.equals(page2.getUrl());
-			if (!success) {
-				Logger.logToSystemLogAndSystemOut("Failed to load site: " + site.getLoginUrl() + " the returned site after login was not as expected. Expected: " + expetedUrlAfterLogin + " but got " + page2.getUrl());
+			boolean success = expetedUrlAfterLogin.equals(page2.getUrl().toString());
+			if (success) {
+				Logger.logToSystemLogAndSystemOut("Success: Loaded " + page2.getUrl() + " with status: " + page2.getWebResponse().getStatusCode() + " " + page2.getWebResponse().getStatusMessage());
+			} else {
+				Logger.logToSystemLogAndSystemOut("Failed: failed to load site: " + site.getLoginUrl() + " the returned site after login was not as expected. Expected: " + expetedUrlAfterLogin + " but got " + page2.getUrl().toString());
 			}
 			return success;
 		}

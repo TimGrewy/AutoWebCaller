@@ -33,7 +33,7 @@ public class AutoWebCallerMain {
 		} catch (Exception e) {
 			String errorMsg = "Failed to run program. " + e.getMessage();
 			Logger.logToSystemLogAndSystemOut(errorMsg);
-			Logger.logToSystemLog(Logger.parseStackTraceToString(e));
+			Logger.logToSystemLogAndSystemOut(Logger.parseStackTraceToString(e));
 
 			new EmailNotifier(properties).sendNotificationEmail(properties.getErrorEmailSendTo(), "Failed to run @ " + new Date(), errorMsg);
 			throw new RuntimeException(e);

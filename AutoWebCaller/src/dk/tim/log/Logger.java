@@ -49,13 +49,8 @@ public class Logger {
 		logStatement(x);
 	}
 
-	public static void logToSystemLog(String x) {
-		systemLog.logStatement(x);
-	}
-
 	public static void logToSystemLogAndSystemOut(String x) {
 		systemLog.logStatement(x);
-		System.out.println(x);
 	}
 
 	private void logStatement(String statement) {
@@ -65,7 +60,7 @@ public class Logger {
 			String decoratedStatement = String.format("[%s] : %s", timestamp, statement);
 			if (isValidLogFile()) {
 				String lineSeperator = System.getProperty("line.separator");
-				;
+
 				out.append(decoratedStatement + lineSeperator);
 			}
 			System.out.println(decoratedStatement);

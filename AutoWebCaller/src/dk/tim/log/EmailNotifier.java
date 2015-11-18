@@ -26,14 +26,12 @@ public class EmailNotifier {
 				java.io.InputStream is = proc.getInputStream();
 				byte b[] = new byte[is.available()];
 				is.read(b, 0, b.length);
-				System.out.println("msg: " + new String(b));
+				Logger.logToSystemLogAndSystemOut("Message from email jar: " + new String(b));
 			} catch (IOException | InterruptedException e) {
-				Logger.logToSystemLog("Failed to send email! Command: " + launchCommand + "Error: " + e.getMessage());
-				System.out.println("Failed to send email! Command: " + launchCommand + "Error: " + e.getMessage());
+				Logger.logToSystemLogAndSystemOut("Failed to send email! Command: " + launchCommand + "Error: " + e.getMessage());
 			}
 		} else {
-			Logger.logToSystemLog("Email has not been set up, skipping sending email");
-			System.out.println("Email has not been set up, skipping sending email");
+			Logger.logToSystemLogAndSystemOut("Email has not been set up, skipping sending email");
 		}
 	}
 
