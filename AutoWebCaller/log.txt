@@ -1,0 +1,33 @@
+[2015/11/18 20:06:13] : Failed to login to https://nxtgn.biz/login.php Error: Test dump
+[2015/11/18 20:06:13] : [Ljava.lang.StackTraceElement;@512ddf17
+[2015/11/18 20:06:13] : Program completed in 157 ms
+[2015/11/18 20:08:41] : Failed to login to https://nxtgn.biz/login.php Error: Test dump
+[2015/11/18 20:08:41] : java.lang.RuntimeException: Test dump
+	at dk.tim.login.LoginViaSubmitForm.doLogin(LoginViaSubmitForm.java:15)
+	at dk.tim.program.AutoWebCaller.runProgram(AutoWebCaller.java:25)
+	at dk.tim.program.Main.main(Main.java:19)
+
+[2015/11/18 20:09:12] : Program completed in 33056 ms
+[2015/11/18 20:10:01] : Failed to login to https://nxtgn.biz/login.php Error: Test dump
+[2015/11/18 20:10:01] : java.lang.RuntimeException: Test dump
+	at dk.tim.login.LoginViaSubmitForm.doLogin(LoginViaSubmitForm.java:15)
+	at dk.tim.program.AutoWebCaller.runProgram(AutoWebCaller.java:25)
+	at dk.tim.program.Main.main(Main.java:19)
+
+[2015/11/18 20:10:02] : Program completed in 150 ms
+[2015/11/18 20:10:45] : Failed to login to https://nxtgn.biz/login.php Error: Test dump
+[2015/11/18 20:10:45] : java.lang.RuntimeException: Test dump
+	at dk.tim.login.LoginViaSubmitForm.doLogin(LoginViaSubmitForm.java:15)
+	at dk.tim.program.AutoWebCaller.runProgram(AutoWebCaller.java:25)
+	at dk.tim.program.Main.main(Main.java:19)
+
+[2015/11/18 20:10:45] : Sending email using command: java -jar C:\A\EmailSender\configuration.txt timgrewy@gmail.com "Failed to login at a site" "Failed to login to https://nxtgn.biz/login.php Error: Test dump" C:\A\EmailSender\emailsender.jar
+[2015/11/18 20:10:45] : Program completed in 148 ms
+[2015/11/18 20:11:32] : Failed to login to https://nxtgn.biz/login.php Error: Test dump
+[2015/11/18 20:11:32] : java.lang.RuntimeException: Test dump
+	at dk.tim.login.LoginViaSubmitForm.doLogin(LoginViaSubmitForm.java:15)
+	at dk.tim.program.AutoWebCaller.runProgram(AutoWebCaller.java:25)
+	at dk.tim.program.Main.main(Main.java:19)
+
+[2015/11/18 20:11:32] : Sending email using command: java -jar C:\A\EmailSender\emailsender.jar timgrewy@gmail.com "Failed to login at a site" "Failed to login to https://nxtgn.biz/login.php Error: Test dump" C:\A\EmailSender\configuration.txt
+[2015/11/18 20:11:34] : Program completed in 2250 ms

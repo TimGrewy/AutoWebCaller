@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Properties>
+	<logFile>log.txt</logFile>
+	<Site>
+		<loginUrl>#https://xyz.com#</loginUrl>
+		<loginButtonId>#submit#</loginButtonId>
+		<passwordFieldId>#password#</passwordFieldId>
+		<usernameFieldId>#username#</usernameFieldId>
+		<username>#YOUR USERNAME#</username>
+		<passwordEncrypted>#A PASSWORD ENCODED WITH BASE64 - See example in	Encrypter.java#</passwordEncrypted>
+		<expetedUrlAfterLogin>#https://xyz.com#</expetedUrlAfterLogin>
+	</Site>
+	<errorEmailSendTo>#someone@xyz.com#</errorEmailSendTo>
+	<emailConfigurationLocation>#C:\...\configuration.txt#
+	</emailConfigurationLocation>
+	<emailJarLocation>#C:\...\emailsender.jar#</emailJarLocation>
+</Properties>
