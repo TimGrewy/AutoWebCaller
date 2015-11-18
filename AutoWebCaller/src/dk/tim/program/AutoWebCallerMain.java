@@ -17,7 +17,7 @@ import dk.tim.xml.XMLParser;
  * 
  * Export: Eclipse->File->Export->java-jar (Runnable jar)- Choose Main.java to be default class - make sure the main project folder is selected.
  */
-public class Main {
+public class AutoWebCallerMain {
 	public static void main(String[] args) {
 		Properties properties = null;
 		try {
