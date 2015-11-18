@@ -14,6 +14,8 @@ import dk.tim.xml.XMLParser;
  *	Launch by running command java -jar AutoWebCaller.jar 
  *
  * If you do not specify a location of properties.xml the program will look in the folder from where you have run it!
+ * 
+ * Export: Eclipse->File->Export->java-jar (Runnable jar)- Choose Main.java to be default class - make sure the main project folder is selected.
  */
 public class Main {
 	public static void main(String[] args) {
