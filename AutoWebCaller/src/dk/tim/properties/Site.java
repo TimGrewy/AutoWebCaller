@@ -5,7 +5,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Site")
 public class Site {
 	private String loginUrl;
-	private String loginButtonId;
+	private String loginButtonId; //System either uses loginId or loginName to find login button
+	private String loginButtonName;
 	private String usernameFieldId;
 	private String passwordFieldId;
 	private String username;
@@ -26,6 +27,14 @@ public class Site {
 
 	public void setLoginButtonId(String loginButtonId) {
 		this.loginButtonId = loginButtonId;
+	}
+
+	public String getLoginButtonName() {
+		return loginButtonName;
+	}
+
+	public void setLoginButtonName(String loginButtonName) {
+		this.loginButtonName = loginButtonName;
 	}
 
 	public String getUsernameFieldId() {
