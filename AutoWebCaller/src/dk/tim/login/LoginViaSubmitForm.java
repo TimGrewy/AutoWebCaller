@@ -1,7 +1,11 @@
 package dk.tim.login;
 
+import java.io.IOException;
+import java.net.URL;
+
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.Page;
+import com.gargoylesoftware.htmlunit.RefreshHandler;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
@@ -50,6 +54,7 @@ public class LoginViaSubmitForm {
 				Logger.logToSystemLogAndSystemOut("Success: Loaded " + page2.getUrl() + " with status: " + page2.getWebResponse().getStatusCode() + " " + page2.getWebResponse().getStatusMessage());
 			} else {
 				Logger.logToSystemLogAndSystemOut("Failed: failed to load site: " + site.getLoginUrl() + " the returned site after login was not as expected. Expected: " + expetedUrlAfterLogin + " but got " + page2.getUrl().toString());
+				Logger.logToSystemLogAndSystemOut("Site: " + page2.getWebResponse().getContentAsString());
 			}
 			return success;
 		} catch (Exception e) {
@@ -60,6 +65,13 @@ public class LoginViaSubmitForm {
 	}
 
 	private static void setupWebClient(final WebClient webClient) {
+		//Fix for exception  - http://stackoverflow.com/questions/12057650/htmlunit-failure-attempted-immediaterefreshhandler-outofmemoryerror-use-wait
+		//I don't know why this works :/
+		webClient.setRefreshHandler(new RefreshHandler() {
+			@Override
+			public void handleRefresh(Page arg0, URL arg1, int arg2) throws IOException {
+			}
+		});
 		webClient.getOptions().setJavaScriptEnabled(true);
 		webClient.getOptions().setCssEnabled(false);
 		webClient.getOptions().setUseInsecureSSL(true);
