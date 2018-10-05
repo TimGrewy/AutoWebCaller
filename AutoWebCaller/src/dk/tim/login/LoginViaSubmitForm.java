@@ -14,12 +14,13 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import dk.tim.common.StringUtils;
 import dk.tim.log.Logger;
 import dk.tim.properties.Site;
+import dk.tim.webclient.WebClientHelper;
 
 public class LoginViaSubmitForm {
 
 	public static boolean doLogin(Site site) throws Exception {
 		try (final WebClient webClient = new WebClient()) {
-			setupWebClient(webClient);
+			WebClientHelper.setupWebClient(webClient);
 
 			String loginUrl = site.getLoginUrl();
 			String loginButtonId = site.getLoginButtonId();
@@ -64,20 +65,4 @@ public class LoginViaSubmitForm {
 		}
 	}
 
-	private static void setupWebClient(final WebClient webClient) {
-		//Fix for exception  - http://stackoverflow.com/questions/12057650/htmlunit-failure-attempted-immediaterefreshhandler-outofmemoryerror-use-wait
-		//I don't know why this works :/
-		webClient.setRefreshHandler(new RefreshHandler() {
-			@Override
-			public void handleRefresh(Page arg0, URL arg1, int arg2) throws IOException {
-			}
-		});
-		webClient.getOptions().setJavaScriptEnabled(true);
-		webClient.getOptions().setCssEnabled(false);
-		webClient.getOptions().setUseInsecureSSL(true);
-		webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-		webClient.getCookieManager().setCookiesEnabled(true);
-		webClient.setAjaxController(new NicelyResynchronizingAjaxController());
-		webClient.getOptions().setThrowExceptionOnScriptError(false);
-	}
 }

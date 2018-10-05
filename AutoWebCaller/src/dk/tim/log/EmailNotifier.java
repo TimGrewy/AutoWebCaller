@@ -15,6 +15,12 @@ public class EmailNotifier {
 			this.configurationLocation = properties.getEmailConfigurationLocation();
 		}
 	}
+	public EmailNotifier(String jarLocation, String configurationLocation) {
+		if (jarLocation != null && configurationLocation != null) {
+			this.jarLocation = jarLocation;
+			this.configurationLocation = configurationLocation;
+		}
+	}
 
 	public void sendNotificationEmail(String to, String header, String body) {
 		if (isSetup()) {

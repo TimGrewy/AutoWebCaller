@@ -15,7 +15,6 @@ import java.util.Locale;
 import dk.tim.file.FileTool;
 
 public class Logger {
-	SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	public static Logger systemLog;
 
 	private String logFilePath;
@@ -50,7 +49,12 @@ public class Logger {
 	}
 
 	public static void logToSystemLogAndSystemOut(String x) {
-		systemLog.logStatement(x);
+		if(systemLog == null) {
+			System.out.println("WHAAAAAAAAATTTTTTTTTTTTTTTTT DDDDDDDER ER INGEN SYS LOG");
+			System.out.println(x);
+		} else {
+		 systemLog.logStatement(x);
+		}
 	}
 
 	private void logStatement(String statement) {
@@ -137,10 +141,11 @@ public class Logger {
 		return writer.toString();
 	}
 
-	private String createTimeStamp() {
+	public static String createTimeStamp() {
 		Locale locale = new Locale("da", "DK");
 		Calendar cal = new GregorianCalendar(locale);
 		Date date = cal.getTime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return df.format(date);
 	}
 }

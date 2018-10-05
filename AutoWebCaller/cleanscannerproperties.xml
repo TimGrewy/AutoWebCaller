@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Properties>
+	<logFile>#NameOfLogFile#</logFile>
+	<site>#Site to scan#</site>
+	<errorEmailSendTo>#someone@somewhere.com#</errorEmailSendTo>
+	<emailConfigurationLocation>#C:\...\emailconfiguration.txt#</emailConfigurationLocation>
+	<emailJarLocation>#C:\...\emailsender.jar#</emailJarLocation>
+	<targetListLocation>#C:\...\TargetTitles.txt#</targetListLocation>
+	<completedListLocation>#C:\...\CompletedTitles.txt#</completedListLocation>
+</Properties>
