@@ -2,7 +2,9 @@ package dk.tim.program.scanner;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import dk.tim.file.ReadFile;
 import dk.tim.log.EmailNotifier;
@@ -22,11 +24,36 @@ import dk.tim.xml.XMLParser;
  */
 public class ScannerWebCallerMain {
 	public static void main(String[] args) {
-		ScannerProperties properties = null;
+		String fileLocation = extractPropertiesFileLocation(args);
+		ScannerProperties properties = readProperties(Paths.get(fileLocation), true);
+		
+		List<String> messages = new ArrayList<>(); 
+		
+		int i = 0;
+		messages.add(attemptRun(args, properties));
+		while (!isLastElementAnSuccess(messages) &&  i < 3) {
+			messages.add(attemptRun(args, properties));
+			i++;
+			try {
+				System.out.println("Failed - trying again in 5 minuttes. Error: " + messages.get(messages.size()-1));
+				Thread.sleep(1000*60*5); //5 mins wait
+			} catch (InterruptedException e) {}
+		}
+		if(!isLastElementAnSuccess(messages) && i >= 3 ){
+			new EmailNotifier(	properties.getEmailJarLocation(), properties.getEmailConfigurationLocation())
+    		.sendNotificationEmail(properties.getErrorEmailSendTo(), "Failed to run @ " + new Date(), "Errors: " + messages);
+		}
+	}
+	
+	private static boolean isLastElementAnSuccess(List<String> list) {
+		String string = list.get(list.size()-1);
+		return "sucess".equals(string);
+	}
+
+	private static String attemptRun(String[] args, ScannerProperties properties) {
 		try {
+			
 			long start = System.currentTimeMillis();
-			String fileLocation = extractPropertiesFileLocation(args);
-			properties = readProperties(Paths.get(fileLocation), true);
 			setupLogging(properties.getLogFile());
 
 			ScannerWebCaller scannerWebCaller = new ScannerWebCaller(properties);
@@ -37,13 +64,11 @@ public class ScannerWebCallerMain {
 			String errorMsg = "Failed to run program. " + e.getMessage();
 			Logger.logToSystemLogAndSystemOut(errorMsg);
 			Logger.logToSystemLogAndSystemOut(Logger.parseStackTraceToString(e));
-
-			new EmailNotifier(	properties.getEmailJarLocation(), properties.getEmailConfigurationLocation())
-            		.sendNotificationEmail(properties.getErrorEmailSendTo(), "Failed to run @ " + new Date(), errorMsg);
-			throw new RuntimeException(e);
+			return errorMsg;
 		} finally {
 			Logger.closeLogger();
 		}
+		return null;
 	}
 
 	private static String extractPropertiesFileLocation(String[] args) {

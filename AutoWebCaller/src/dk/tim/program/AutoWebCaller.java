@@ -25,7 +25,7 @@ public class AutoWebCaller {
 				String errorMsg = "Failed to login to " + site.getLoginUrl() + " Error: " + e.getMessage();
 				Logger.logToSystemLogAndSystemOut(errorMsg);
 				Logger.logToSystemLogAndSystemOut(Logger.parseStackTraceToString(e));
-				new EmailNotifier(properties).sendNotificationEmail(properties.getErrorEmailSendTo(), "Failed to login at a site " + site.getLoginUrl(), errorMsg);
+				throw new RuntimeException(errorMsg, e);
 			}
 		}
 	}
